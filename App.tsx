@@ -22,7 +22,7 @@ export default function App() {
             backgroundColor="transparent"
             translucent
           />
-          {fontLoaded ?  <Ficha /> : <Loading />}
+          {fontLoaded ?  <Avaliacao /> : <Loading />}
         </View>
   
   );

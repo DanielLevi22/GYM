@@ -4,6 +4,9 @@ import video from '@assets/video.png'
 import { Button } from "@components/Button";
 import { Header } from "@components/header";
 export  function Exercicio() {
+
+
+  
   return (
     <View className=" flex-1 bg-gray-700 px-6">
      <Header variant="secondary" />

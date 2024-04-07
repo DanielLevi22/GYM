@@ -1,19 +1,18 @@
-import { ImageBackground, Text, View, VirtualizedList } from "react-native";
-import Logo from '@assets/Logo.svg'
-import treino from '@assets/treinoA.png'
+import {  Text, View,  } from "react-native";
+
 import { Header } from "@components/header";
-import { FichaList } from "@components/FichaList";
+import { FichaCard } from "@components/FichaCard";
 
 export  function Ficha() {
-  const treinos = Array.from({ length: 100 }, (_, i) => ({
-    id: i,
-    nome: `Treino ${String.fromCharCode(65 + i)}`,
-    src:  '',
-  }));
-  
-  const getItemCount = (data: any[]) => data.length;
 
-  const getItem = (data: any[], index: number) => data[index];
+
+
+  const FichaData =  [
+    { id: 1, nome: 'A', src: 'https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg'},
+    { id: 2, nome: 'B', src: 'https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg'},
+    { id: 3, nome: 'C', src: 'https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg'},
+    { id: 4, nome: 'D', src: 'https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg'},
+  ]
 
 
   return (
@@ -21,14 +20,14 @@ export  function Ficha() {
     <Header variant="secondary" />
       <Text className="text-center text-lg text-gray-100 mt-8">Ficha de treino</Text>
     <View className="mt-14">
-       <VirtualizedList
-        data={treinos}
-        initialNumToRender={10}
-        renderItem={({ item }) => <FichaList nome={item.nome} src='' />}
-        keyExtractor={(item) => item.id.toString()}
-        getItemCount={getItemCount}
-        getItem={getItem}
-      />
+      {FichaData.map( item => (
+        <FichaCard
+          key={item.id}
+          nome={item.nome}
+          src={item.src}
+        />
+      ))
+      }
     </View>
     </View>
   )
