@@ -1,21 +1,23 @@
-import { View, Image, Text, ViewBase, Alert } from "react-native";
+import { View, Image, Text, Alert, TouchableOpacity, StyleSheet } from "react-native";
 import background from '@assets/background.png'
 import Logo from '@assets/Logo.svg'
-import { Input } from "@components/Input";
+import { Input, InputPassword } from "@components/Input";
 import { Button } from "@components/Button";
+import { Ionicons } from '@expo/vector-icons';
 import auth from '@react-native-firebase/auth';
-import { useState } from "react";
+import React, { useState } from "react";
 
 
 export function SignIn() {
   const [matricula, setMatricula] = useState('');
   const [senha, setSenha] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const handleSignUp = () => {
     auth()
       .signInWithEmailAndPassword(`${matricula}@example.com`, senha)
       .then(() => {
-        console.log('Conta de usuário criada e conectada!');
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
@@ -28,16 +30,12 @@ export function SignIn() {
         else {
           Alert.alert('Erro', error.message);
         }
-        console.error(error);
       });
   };
 
   return (
     <View className="flex-1 bg-gray-700">
-      <Image source={background} alt="logo"
-        className="absolute"
-        resizeMode="contain"
-      />
+      <Image source={background} alt="logo" className="absolute" resizeMode="contain" />
 
       <View className="items-center my-24">
         <Logo />
@@ -45,9 +43,7 @@ export function SignIn() {
       </View>
 
       <View className="items-center">
-        <Text className="text-gray-100 text-xl mb-6 font-heading">
-          Acesse sua conta
-        </Text>
+        <Text className="text-gray-100 text-xl mb-6 font-heading">Acesse sua conta</Text>
       </View>
 
       <View className="items-center px-6">
@@ -57,11 +53,11 @@ export function SignIn() {
           value={matricula}
           onChangeText={setMatricula}
         />
-        <Input
+        <InputPassword
           placeholder="Senha"
-          secureTextEntry
           value={senha}
           onChangeText={setSenha}
+          secureTextEntry={!showPassword}
         />
         <Button title="Acessar" onPress={handleSignUp} />
       </View>
