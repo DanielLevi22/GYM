@@ -13,8 +13,6 @@ import { Profile } from '@screens/profile';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Tabs from '@components/Tabs';
-
-// Importar Firebase Auth
 import auth from '@react-native-firebase/auth';
 
 const Tab = createBottomTabNavigator();
@@ -31,7 +29,7 @@ export default function App() {
     const subscriber = auth().onAuthStateChanged((user) => {
       onAuthStateChanged(user);
     });
-    return () => subscriber(); // unsubscribe on unmount
+    return () => subscriber();
   }, []);
 
   function onAuthStateChanged(user: any) {

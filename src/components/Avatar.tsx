@@ -5,7 +5,6 @@ export function Avatar() {
 
   return (
       <Image source={{ uri: imageUrl }}  className="w-14 h-14 rounded-full "/>
-
   );
 }
 
