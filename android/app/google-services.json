@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "800265663554",
+    "project_id": "rfitgym-728fe",
+    "storage_bucket": "rfitgym-728fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800265663554:android:5dab20343d7738f01029db",
+        "android_client_info": {
+          "package_name": "com.gym"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2fld_AUqaq7XkVV-I1XXtaaOYMOyt_Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

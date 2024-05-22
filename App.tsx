@@ -1,5 +1,5 @@
-
 import 'react-native-gesture-handler';
+import React, { useState, useEffect } from 'react';
 import { View, StatusBar } from 'react-native';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import { Loading } from '@components/Loading';
@@ -13,6 +13,7 @@ import { Profile } from '@screens/profile';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Tabs from '@components/Tabs';
+import auth from '@react-native-firebase/auth';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,10 +21,28 @@ export default function App() {
   const [fontLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold
-  })
+  });
 
-  if (!fontLoaded) {
-    return <Loading />
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged((user) => {
+      onAuthStateChanged(user);
+    });
+    return () => subscriber();
+  }, []);
+
+  function onAuthStateChanged(user: any) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  if (initializing || !fontLoaded) {
+    return <Loading />;
+  }
+
+  if (!user) {
+    return <SignIn />;
   }
 
   return (
@@ -32,4 +51,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
