@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { Header } from "@components/header";
 import HomeCard from "@components/HomeCard";
-import auth from '@react-native-firebase/auth';
+import auth from "@react-native-firebase/auth";
 import { useEffect, useState } from "react";
 
 export function Home() {
@@ -16,18 +16,33 @@ export function Home() {
   }, []);
 
   const HomeData = [
-    { id: 1, title: 'Seu último treino', name: 'A', src: 'https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg' },
-    { id: 2, title: 'Suas Ultimas Avaliações', name: 'B', src: 'https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg' },
-  ]
+    {
+      id: 1,
+      title: "Seu último treino",
+      name: "A",
+      src: "https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg",
+    },
+    {
+      id: 2,
+      title: "Suas Ultimas Avaliações",
+      name: "B",
+      src: "https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg",
+    },
+  ];
 
-  const userName = currentUser && currentUser.displayName ? currentUser.displayName : currentUser?.email;
+  const userName =
+    currentUser && currentUser.displayName
+      ? currentUser.displayName
+      : currentUser?.email;
 
   return (
     <View className=" flex-1 bg-gray-700 px-6">
       <Header variant="primary" />
 
-      <Text className="text-gray-100 font-heading text-center text-base mb-8">Olá, {userName.split('@')[0]}</Text>
-      {HomeData.map(item => (
+      <Text className="text-gray-100 font-heading text-center text-base mb-8">
+        Olá!
+      </Text>
+      {HomeData.map((item) => (
         <HomeCard
           key={item.id}
           name={item.name}
@@ -50,5 +65,5 @@ export function Home() {
         </View>
       </View>
     </View>
-  )
+  );
 }
