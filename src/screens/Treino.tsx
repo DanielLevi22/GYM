@@ -8,7 +8,7 @@ export function Treino() {
     <View className=" flex-1 bg-gray-700 px-6">
       <Header variant="secondary" />
       <Text className="text-center text-lg text-gray-100 mt-8">Treino A</Text>
-      <View className="px-2">
+      <View className="px-2 flex-1">
         <TreinoList />
       </View>
     </View>

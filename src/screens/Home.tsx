@@ -33,14 +33,14 @@ export function Home() {
   const userName =
     currentUser && currentUser.displayName
       ? currentUser.displayName
-      : currentUser?.email;
+      : currentUser?.email.split('@')[0] || "";
 
   return (
     <View className=" flex-1 bg-gray-700 px-6">
       <Header variant="primary" />
 
       <Text className="text-gray-100 font-heading text-center text-base mb-8">
-        Olá!
+        Olá, {userName}!
       </Text>
       {HomeData.map((item) => (
         <HomeCard

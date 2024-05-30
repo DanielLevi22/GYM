@@ -13,24 +13,31 @@ export function SignIn() {
   const [senha, setSenha] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+ 
 
   const handleSignUp = () => {
-    auth()
-      .signInWithEmailAndPassword(`${matricula}@example.com`, senha)
-      .then(() => {
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          Alert.alert('Erro', 'Esse endereço de email já está em uso!');
-        } else if (error.code === 'auth/invalid-email') {
-          Alert.alert('Erro', 'Esse endereço de email é inválido!');
-        } else if (error.code === 'auth/weak-password') {
-          Alert.alert('Erro', 'Sua senha precisa conter pelo menos 6 dígitos!');
-        }
-        else {
-          Alert.alert('Erro', error.message);
-        }
-      });
+    if (matricula.length > 0 && senha.length > 0) {
+      auth()
+        .signInWithEmailAndPassword(`${matricula}@example.com`, senha)
+        .then(() => {
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            Alert.alert('Erro', 'Esse endereço de email já está em uso!');
+          } else if (error.code === 'auth/invalid-email') {
+            Alert.alert('Erro', 'Esse endereço de email é inválido!');
+          } else if (error.code === 'auth/weak-password') {
+            Alert.alert('Erro', 'Sua senha precisa conter pelo menos 6 dígitos!');
+          } else if (error.code === 'auth/invalid-credential') {
+            Alert.alert('Erro', 'Sua senha está incorreta, expirada ou fora do padrão de senhas!')
+          }
+          else {
+            Alert.alert('Erro', error.message);
+          }
+        });
+    } else {
+      Alert.alert('Erro', 'Usuário ou senha inválidos!');
+    }
   };
 
   return (
