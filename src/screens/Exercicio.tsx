@@ -1,5 +1,4 @@
 import {  ImageBackground, Text, View } from "react-native";
-import Logo from '@assets/Logo.svg'
 import video from '@assets/video.png'
 import { Button } from "@components/Button";
 import { Header } from "@components/header";

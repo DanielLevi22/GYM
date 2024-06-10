@@ -14,9 +14,7 @@ interface HeaderProps {
 
 export function Header({ variant }: HeaderProps) {
   const navigation = useNavigation();
-  // function redirectToHome() {
-  //   navigation.navigate();
-  // }
+
   return (
     <>
       {variant === 'primary' && (

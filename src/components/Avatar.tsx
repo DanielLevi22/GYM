@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Image, TouchableOpacity, View, ViewBase } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 
 export function Avatar() {
   const imageUrl = 'https://mighty.tools/mockmind-api/content/human/44.jpg';

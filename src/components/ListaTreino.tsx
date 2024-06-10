@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -6,6 +7,7 @@ import {
   SectionList,
   StyleSheet,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 
 interface Exercise {
@@ -22,6 +24,7 @@ interface Section {
 const windowWidth = Dimensions.get("window").width;
 
 const ListaTreino: React.FC = () => {
+  const navigation = useNavigation();
   const DATA: Section[] = [
     {
       title: "Peitorais e Ombro",
@@ -60,18 +63,22 @@ const ListaTreino: React.FC = () => {
 
   const renderItem = ({ item }: { item: Exercise }) => (
     <View style={styles.itemContainer}>
-      <ImageBackground
-        source={{ uri: item.image }}
-        style={styles.imageBackground}
+      <TouchableOpacity 
+        onPress={() => navigation.navigate('Exercicio')}
       >
-        <Text
-          style={[styles.text, styles.textShadow]}
-          numberOfLines={2}
-          ellipsizeMode="tail"
+        <ImageBackground
+          source={{ uri: item.image }}
+          style={styles.imageBackground}
         >
-          {item.exercise}
-        </Text>
-      </ImageBackground>
+          <Text
+            style={[styles.text, styles.textShadow]}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            {item.exercise}
+          </Text>
+        </ImageBackground>
+      </TouchableOpacity>
     </View>
   );
 
@@ -102,7 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 8,
     overflow: "hidden"
-    //paddingHorizontal: 16,
+
   },
   imageBackground: {
     height: 120,
