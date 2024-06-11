@@ -2,66 +2,64 @@ import { Text, View } from "react-native";
 import Logo from '@assets/Logo.svg'
 import { Header } from "@components/header";
 import { AvaliacaoItem } from "@components/AvaliacaoItem";
+import { useEffect, useState } from "react";
+import firestore from '@react-native-firebase/firestore';
+
+interface Avaliacao {
+  id: string;
+  altura: string;
+  mes: string;
+  data: string;
+  nome: string;
+  peso: string;
+}
+
 
 export function Avaliacao() {
+  const [avaliacaoData, setAvaliacaoData] = useState<Avaliacao[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const AvaliacaoData =[
-    { id: 1, nome: 'Item 1', peso: '50 kg' },
-    { id: 2, nome: 'Item 2', peso: '50 kg' },
-    { id: 3, nome: 'Item 3', peso: '50 kg' },
-    { id: 4, nome: 'Item 4', peso: '50 kg' },
-    { id: 5, nome: 'Item 5', peso: '50 kg' },
-    { id: 6, nome: 'Item 6', peso: '50 kg' },
-    { id: 7, nome: 'Item 7', peso: '50 kg' }
-  ];
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const snapshot = await firestore().collection('avaliacoes').get();
+        const data = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        } as Avaliacao));
+        setAvaliacaoData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <Text className="text-gray-100">Loading...</Text>
+      </View>
+    );
+  }
+
   return (
-    <View className=" flex-1 bg-gray-700 px-6">
-     <Header variant="secondary" />
+    <View className="flex-1 bg-gray-700 px-6">
+      <Header variant="secondary" />
 
       <Text className="text-lg font-heading text-gray-100 text-center mt-8">Avaliação física</Text>
-      <Text className="text-lg  text-gray-100 mt-7 mb-4">Data: 25/04/2023</Text>
+      <Text className="text-lg text-gray-100 mt-7 mb-4">Data: 25/04/2023</Text>
 
-
-      {AvaliacaoData.map(item => (
+      {avaliacaoData.map(item => (
         <AvaliacaoItem 
           key={item.id}
-          name={item.nome}
+          mes={item.mes}
           measure={item.peso}
         />
       ))}
-
-
-      {/* <View className="flex-row justify-between p-3 bg-red-700 rounded-lg mb-3">
-        <Text className="text-base text-gray-100 font-heading">Peso</Text>
-        <Text  className="text-base text-gray-100 font-heading">50 kg</Text>
-      </View>
-      <View className="flex-row justify-between p-3 bg-red-700 rounded-lg mb-3">
-        <Text className="text-base text-gray-100 font-heading">Peso</Text>
-        <Text  className="text-base text-gray-100 font-heading">50 kg</Text>
-      </View>
-      <View className="flex-row justify-between p-3 bg-red-700 rounded-lg mb-3">
-        <Text className="text-base text-gray-100 font-heading">Peso</Text>
-        <Text  className="text-base text-gray-100 font-heading">50 kg</Text>
-      </View>
-      <View className="flex-row justify-between p-3 bg-red-700 rounded-lg mb-3">
-        <Text className="text-base text-gray-100 font-heading">Peso</Text>
-        <Text  className="text-base text-gray-100 font-heading">50 kg</Text>
-      </View>
-      <View className="flex-row justify-between p-3 bg-red-700 rounded-lg mb-3">
-        <Text className="text-base text-gray-100 font-heading">Peso</Text>
-        <Text  className="text-base text-gray-100 font-heading">50 kg</Text>
-      </View>
-      <View className="flex-row justify-between p-3 bg-red-700 rounded-lg mb-3">
-        <Text className="text-base text-gray-100 font-heading">Peso</Text>
-        <Text  className="text-base text-gray-100 font-heading">50 kg</Text>
-      </View>
-      <View className="flex-row justify-between p-3 bg-red-700 rounded-lg mb-3">
-        <Text className="text-base text-gray-100 font-heading">Peso</Text>
-        <Text  className="text-base text-gray-100 font-heading">50 kg</Text>
-      </View> */}
-
     </View>
-
-  )
+  );
 }
