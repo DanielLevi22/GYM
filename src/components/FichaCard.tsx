@@ -1,5 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { ImageBackground, Text, StyleSheet } from "react-native";
+import { ImageBackground, Text, StyleSheet, View, TouchableOpacity } from "react-native";
 
 interface FichaCardProps {
   id: string;
@@ -8,11 +9,13 @@ interface FichaCardProps {
 }
 
 export function FichaCard({ nome, src }: FichaCardProps) {
- 
+ const navigate = useNavigation()
   return (
-    <ImageBackground source={{ uri: src }} style={styles.imageBackground}>
+    <TouchableOpacity className=" overflow-hidden" onPress={() => navigate.navigate("Treino")}>
+    <ImageBackground source={{ uri: src }} style={styles.imageBackground} className="overflow-hidden ">
       <Text style={[styles.text, styles.textShadow]}>{nome}</Text>
     </ImageBackground>
+    </TouchableOpacity>
   );
 }
 

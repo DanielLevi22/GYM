@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { Header } from "@components/header";
 import { AvaliacaoItem } from "@components/AvaliacaoItem";
 import { useEffect, useState } from "react";
@@ -44,19 +44,21 @@ export function Avaliacao() {
   }
 
   return (
-    <View className="flex-1 bg-gray-700 px-6">
+    <View style={{ flex: 1, paddingHorizontal: 20 , backgroundColor: '#171717'}} >
       <Header variant="secondary" />
 
-      <Text className="text-lg font-heading text-gray-100 text-center mt-8">Avaliação física</Text>
-      <Text className="text-lg text-gray-100 mt-7 mb-4">Data: 25/04/2023</Text>
+      <Text style={{ fontSize: 20, fontFamily: 'heading', color: 'white', textAlign: 'center', marginTop: 20 }}>Avaliação física</Text>
+      <Text style={{ fontSize: 20, color: 'white', marginTop: 10, marginBottom: 20 }}>Data: 25/04/2023</Text>
 
-      {avaliacaoData.map(item => (
-        <AvaliacaoItem 
-          key={item.id}
-          mes={item.nome}
-          measure={item.medida}
-        />
-      ))}
+      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#171717', paddingBottom: 40}}>
+        {avaliacaoData.map(item => (
+          <AvaliacaoItem 
+            key={item.id}
+            mes={item.nome}
+            measure={item.medida}
+          />
+        ))}
+      </ScrollView>
     </View>
-  );
+);
 }

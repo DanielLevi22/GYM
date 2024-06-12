@@ -11,7 +11,7 @@ export default function HomeCard({name,src,title}:HomeCardProps) {
   return (
     <View className="gap-3 mb-5">
         <Text className="text-gray-100 text-base font-heading">{title}</Text>
-        <ImageBackground source={{uri: src}} className="h-[100px] rounded-lg bg-gray-600 items-center justify-center">
+        <ImageBackground source={{uri: src}} className="h-[100px] rounded-lg bg-gray-600 items-center justify-center overflow-hidden">
           <Text className="text-base text-gray-50">{name}</Text>
         </ImageBackground>
       </View>

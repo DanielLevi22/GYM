@@ -10,6 +10,7 @@ import auth from '@react-native-firebase/auth';
 import { StatusBar } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Exercicio } from '@screens/Exercicio';
+import { Treino } from '@screens/Treino';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,8 @@ export default function App() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Tabs" component={Tabs} />
       <Stack.Screen name="Exercicio" component={Exercicio} />
+      <Stack.Screen name="Treino" component={Treino} />
+
     </Stack.Navigator>
   </NavigationContainer>
   );

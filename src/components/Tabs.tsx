@@ -57,15 +57,7 @@ export default function Tabs() {
             ),
           }}
         />
-        <Tab.Screen
-          name="Treino"
-          component={Treino}
-          options={{
-            tabBarIcon: ({color, focused}) => (
-              <FontAwesome5 name="dumbbell" size={24}  color={focused ? '#dc2626' : '#c3c3c3'}/>
-            ),
-          }}
-        />
+      
         <Tab.Screen
           name="Perfil"
           component={Profile}

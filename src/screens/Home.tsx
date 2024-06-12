@@ -19,14 +19,14 @@ export function Home() {
     {
       id: 1,
       title: "Seu último treino",
-      name: "A",
+      name: "",
       src: "https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg",
     },
     {
       id: 2,
       title: "Suas Ultimas Avaliações",
-      name: "B",
-      src: "https://treinomestre.com.br/wp-content/uploads/2014/06/exercicios-treino-de-costas-iniciantes.jpg",
+      name: "",
+      src: "https://cdn.pixabay.com/photo/2016/06/24/09/26/measurement-1476919_1280.jpg",
     },
   ];
 
@@ -40,7 +40,7 @@ export function Home() {
       <Header variant="primary" />
 
       <Text className="text-gray-100 font-heading text-center text-base mb-8">
-        Olá, {userName}!
+        Olá, Mariana
       </Text>
       {HomeData.map((item) => (
         <HomeCard
@@ -53,15 +53,15 @@ export function Home() {
 
       <View className="flex-row justify-between mt-12 gap-3">
         <View className="p-5 items-center justify-center bg-red-500 rounded-lg">
-          <Text>Planilha</Text>
+          <Text>Ficha</Text>
         </View>
 
         <View className="p-5 items-center justify-center bg-gray-500 rounded-lg">
-          <Text>Planilha</Text>
+          <Text>Avaliação</Text>
         </View>
 
         <View className="p-5 items-center justify-center bg-yellow-500 rounded-lg">
-          <Text>Planilha</Text>
+          <Text>Perfil</Text>
         </View>
       </View>
     </View>
