@@ -24,7 +24,9 @@ export  function Profile() {
           <Avatar />
           
         </View>
-        <Input placeholder="Senha" className="mb-2 mt-10" />
+        <Input placeholder="Nome" className="mt-10 mb-4"/>
+        <Input placeholder="Sobrenome" className="mb-4" />
+        <Input placeholder="Senha" className="mb-8" />
         <View className="gap-3">
           <Button title="Salvar"/>
           <TouchableOpacity className="w-full py-3 bg-transparent border-solid border-2 border-red-700 rounded-lg items-center" onPress={logout}>

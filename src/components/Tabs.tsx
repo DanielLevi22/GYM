@@ -57,7 +57,7 @@ export default function Tabs() {
             ),
           }}
         />
-      
+    
         <Tab.Screen
           name="Perfil"
           component={Profile}

@@ -50,7 +50,7 @@ export function Avaliacao() {
       <Text style={{ fontSize: 20, fontFamily: 'heading', color: 'white', textAlign: 'center', marginTop: 20 }}>Avaliação física</Text>
       <Text style={{ fontSize: 20, color: 'white', marginTop: 10, marginBottom: 20 }}>Data: 25/04/2023</Text>
 
-      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#171717', paddingBottom: 40}}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#171717', paddingBottom: 40, paddingTop: 20}}>
         {avaliacaoData.map(item => (
           <AvaliacaoItem 
             key={item.id}
