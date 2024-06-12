@@ -1,18 +1,37 @@
 import { Text, View } from "react-native";
 import { Header } from "@components/header";
 import HomeCard from "@components/HomeCard";
-import auth from "@react-native-firebase/auth";
 import { useEffect, useState } from "react";
+import { Usuario } from "./SignIn";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from "@react-navigation/native";
 
 export function Home() {
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<Usuario | null>(null);
+  const [loading, setLoading] = useState(true);
+  const navigation = useNavigation()
 
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((user: any) => {
-      setCurrentUser(user);
-    });
+    const fetchUserFromAsyncStorage = async () => {
+      try {
+        const userDataString = await AsyncStorage.getItem('userData');
+        if (userDataString!== null) {
+          const userData = JSON.parse(userDataString);
+          setCurrentUser(userData as Usuario);
+          setLoading(false);
+        } else {
+          setCurrentUser(null);
+          setLoading(false);
+          console.log('No user data found in AsyncStorage.');
+        }
+      } catch (error) {
+        console.error("Error fetching user from AsyncStorage: ", error);
+        setCurrentUser(null);
+        setLoading(false);
+      }
+    };
 
-    return unsubscribe;
+    fetchUserFromAsyncStorage();
   }, []);
 
   const HomeData = [
@@ -30,19 +49,17 @@ export function Home() {
     },
   ];
 
-  const userName =
-    currentUser && currentUser.displayName
-      ? currentUser.displayName
-      : currentUser?.email.split('@')[0] || "";
+  const userName = currentUser?.nome || "";
 
   return (
-    <View className=" flex-1 bg-gray-700 px-6">
+    <View className="flex-1 bg-gray-700 px-6">
       <Header variant="primary" />
 
       <Text className="text-gray-100 font-heading text-center text-base mb-8">
         Olá, {userName}!
       </Text>
-      {HomeData.map((item) => (
+      {loading && <Text>Loading...</Text>}
+      {!loading && HomeData.map((item) => (
         <HomeCard
           key={item.id}
           name={item.name}
