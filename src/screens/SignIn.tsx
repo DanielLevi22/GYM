@@ -1,9 +1,8 @@
-import { View, Image, Text, Alert, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Image, Text, Alert } from "react-native";
 import background from '@assets/background.png'
 import Logo from '@assets/Logo.svg'
 import { Input, InputPassword } from "@components/Input";
 import { Button } from "@components/Button";
-import { Ionicons } from '@expo/vector-icons';
 import auth from '@react-native-firebase/auth';
 import React, { useState } from "react";
 

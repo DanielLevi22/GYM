@@ -1,6 +1,5 @@
 import { ImageBackground, Text, View } from "react-native";
 import Logo from "@assets/Logo.svg";
-import supino from "@assets/supino.png";
 import { Header } from "@components/header";
 import TreinoList from "@components/ListaTreino";
 export function Treino() {

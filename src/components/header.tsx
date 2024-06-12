@@ -1,4 +1,4 @@
-import { Button, Text, TouchableOpacity, View } from "react-native";
+import {  TouchableOpacity, View } from "react-native";
 import { Avatar } from "./Avatar";
 
 import Logo from '@assets/Logo.svg'

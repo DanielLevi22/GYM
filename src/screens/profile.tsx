@@ -1,12 +1,8 @@
-import { Image, ImageBackground, Text, TouchableOpacity, View, ViewBase } from "react-native";
-import Logo  from '@assets/Logo.svg'
+import { Text, TouchableOpacity, View } from "react-native";
 import { Avatar } from "@components/Avatar";
-import treino from '@assets/treinoA.png'
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { Header } from "@components/header";
-import { FontAwesome5 } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import auth from '@react-native-firebase/auth';
 

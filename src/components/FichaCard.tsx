@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ImageBackground, Text, StyleSheet } from "react-native";
 
 interface FichaCardProps {
+  id: string;
   nome: string;
   src: string;
 }
 
 export function FichaCard({ nome, src }: FichaCardProps) {
+ 
   return (
     <ImageBackground source={{ uri: src }} style={styles.imageBackground}>
       <Text style={[styles.text, styles.textShadow]}>{nome}</Text>
@@ -30,9 +32,6 @@ const styles = StyleSheet.create({
   textShadow: {
     textShadowColor: "#000000", // Cor preta
     textShadowOffset: { width: -1, height: -1 },
-    textShadowRadius: 1,
-    textShadowColor: "#000000", // Cor preta
-    textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
   },
 });

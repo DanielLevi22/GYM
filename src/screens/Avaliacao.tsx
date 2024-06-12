@@ -1,5 +1,4 @@
 import { Text, View } from "react-native";
-import Logo from '@assets/Logo.svg'
 import { Header } from "@components/header";
 import { AvaliacaoItem } from "@components/AvaliacaoItem";
 import { useEffect, useState } from "react";
@@ -7,11 +6,9 @@ import firestore from '@react-native-firebase/firestore';
 
 interface Avaliacao {
   id: string;
-  altura: string;
-  mes: string;
   data: string;
   nome: string;
-  peso: string;
+  medida: string;
 }
 
 
@@ -56,8 +53,8 @@ export function Avaliacao() {
       {avaliacaoData.map(item => (
         <AvaliacaoItem 
           key={item.id}
-          mes={item.mes}
-          measure={item.peso}
+          mes={item.nome}
+          measure={item.medida}
         />
       ))}
     </View>

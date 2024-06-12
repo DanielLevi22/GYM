@@ -23,7 +23,9 @@ interface Section {
 
 const windowWidth = Dimensions.get("window").width;
 
+
 const ListaTreino: React.FC = () => {
+
   const navigation = useNavigation();
   const DATA: Section[] = [
     {
